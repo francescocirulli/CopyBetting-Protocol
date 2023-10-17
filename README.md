@@ -40,3 +40,4 @@ To replicate a bet:
 1. Monitor play events on the Azuro protocol (and so covering all its associated frontend).
 2. When a valid copier-bettor match is identified, call the `betOnBehalfOfUser(...)` method in the `CopyBettingEngine` with the appropriate parameters.
 3. The copied bet will be placed using the deposited funds and sent to the copier's address for redeeming.
+In production, the "replicate a bet" action will be automatically made by a third-party bot so that users should never interact with the `CopyBettingEngine`.

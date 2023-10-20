@@ -137,8 +137,8 @@ contract CopyBettingRegistry is ICopyBettingRegistry {
     betsLeft[copier][bettor] -= 1;
     // if betsLeft is 0, emove the amount and set the flag to indicate that this bettor no longer exists.
     if(betsLeft[copier][bettor] == 0) {
-      isBettorExists[msg.sender][bettor] = false;
-      betAmounts[msg.sender][bettor] = 0;
+      isBettorExists[copier][bettor] = false;
+      betAmounts[copier][bettor] = 0;
     }
   }
 

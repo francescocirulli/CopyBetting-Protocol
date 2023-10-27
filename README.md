@@ -1,6 +1,6 @@
 # CopyBetting Protocol (Azuro)
 
-The CopyBetting protocol enables users to automatically replicate bets made by other players on the Azuro protocol, regardless of the frontend operator. Copybetting involves duplicating the plays, including the match and outcome, made by another player.
+The CopyBetting protocol enables users to replicate, or copybet, bets made by other players on the Azuro protocol, regardless of the frontend operator. Copybetting involves duplicating the bets, particularly the match and outcome, made by another player.
 
 ## Components
 
@@ -12,7 +12,7 @@ The `CopyBettingRegistry` contract provides users with the ability to:
 
 1. Select one or more addresses to copybet.
 2. Define the number of bets they wish to copybet.
-3. Specify the amount to be wagered on each copybeted bet.
+3. Specify the amount to bet on each copybet automatically.
 
 using the function addCopyBettingPlayer(address[] memory newBettors, uint128[] memory amounts, uint256[] memory betNumbers)
 
@@ -24,11 +24,11 @@ The `CopyBettingEngine` contract contains the logic for executing copybets. It e
 
 #### `betOnBehalfOfUser(address copier, uint256 betId, address bettor)`
 
-- `copier`: The address of the wallet that wishes to copy the bet.
+- `copier`: The wallet address that wishes to copy the bet.
 - `betId`: Identifies the specific bet to be replicated.
 - `bettor`: The address of the player whose bet is being copied.
 
-The method automatically retrieves bet data, including the match and outcome, from the specified `betId`. It then uses the funds previously deposited by the user to place the bet. The copied bet is sent directly to the `copier's` address for redeeming. The `CopyBettingEngine` keeps track of the remaining number of plays a user can copybet, decrementing it with each copybet until it reaches zero. At this point, further copying is no longer allowed for that player.
+The method automatically retrieves bet data, including the match and outcome, from the specified `betId` calling the Azuro PreMtachCore contract. It then uses the funds previously deposited by the user to place the bet. The copied bet is sent directly to the `copier's` address for redeeming. The `CopyBettingEngine` keeps track of the remaining number of plays a user can copybet, decrementing it with each copybet until it reaches zero. At this point, further copying is no longer allowed for that player.
 
 ## Usage
 
@@ -42,3 +42,4 @@ To replicate a bet:
 3. The copied bet will be placed using the deposited funds and sent to the copier's address for redeeming.
 
 In production, the "replicate a bet" action will be automatically made by a third-party bot so that users should never interact with the `CopyBettingEngine`.
+In this way, there is no friction for bettors' adoption since they can bet on any frontend operators and be copybetted. 
